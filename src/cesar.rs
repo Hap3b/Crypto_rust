@@ -17,7 +17,6 @@ fn find_key(msg: &str) -> u8 {
         let count = occurences.entry(letter).or_insert(0);
         *count   += 1;
     }
-    println!("{:?}", occurences);
 
     let mut max = 0;
     let mut key = 0;
@@ -28,7 +27,6 @@ fn find_key(msg: &str) -> u8 {
             key = (letter as u8 - b'e')%26;
         };
     }
-    println!("{}", key);
     key = 26 - key;
     key
 }
@@ -43,6 +41,13 @@ mod tests {
         let key = find_key(msg);
         let display = dec(key, &msg);
         println!("{}", display);
+    }
+
+    #[test]
+    fn test_find_key() {
+        let msg = "eeeeeeeeeeee";
+        let key = find_key(msg);
+        assert!(key==26);
     }
 }
 
