@@ -1,12 +1,5 @@
 use std::collections::HashMap;
 
-fn main() {
-    let msg = "vcfgrwqwfsbhfsntowbsobgfsbhfsnqvsnjcigsghqsoixcifrviwtshseicwbsgojsnjcigdogeisjcigoihfsgofhwgobgjcigbsrsjsnqwfqizsfrobgzsgfisgzsgxcifgcijfopzsgeiojsqzsggwubsgrsjchfsdfctsggwcbdofzseiszsghhcbashwsf";
-    let key = find_key(msg);
-    let display = dec(key, &msg);
-    println!("{}", display);
-}
-
 fn dec(key: u8, msg: &str) -> String {
     msg.chars().map(|c| {
         match c {
@@ -35,9 +28,21 @@ fn find_key(msg: &str) -> u8 {
             key = (letter as u8 - b'e')%26;
         };
     }
-
     println!("{}", key);
     key = 26 - key;
     key
-
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_cesar() {
+        let msg = "vcfgrwqwfsbhfsntowbsobgfsbhfsnqvsnjcigsghqsoixcifrviwtshseicwbsgojsnjcigdogeisjcigoihfsgofhwgobgjcigbsrsjsnqwfqizsfrobgzsgfisgzsgxcifgcijfopzsgeiojsqzsggwubsgrsjchfsdfctsggwcbdofzseiszsghhcbashwsf";
+        let key = find_key(msg);
+        let display = dec(key, &msg);
+        println!("{}", display);
+    }
+}
+
