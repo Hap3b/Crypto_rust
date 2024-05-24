@@ -41,6 +41,7 @@ mod tests {
         let key = find_key(msg);
         let display = dec(key, &msg);
         println!("{}", display);
+        assert!(key==12);
     }
 
     #[test]
